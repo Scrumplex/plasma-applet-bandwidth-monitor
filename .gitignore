@@ -1,3 +1,4 @@
 *.qmlc
 *.plasmoid
-
+.idea/
+cmake-build-debug/
