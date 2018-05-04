@@ -10,11 +10,11 @@ Based on the [Plasma 4 widget](http://kde-apps.org/content/show.php/netspeed-pla
 ### From source
 
 ```bash
-git clone https://github.com/dfaust/plasma-applet-netspeed-widget
-cd plasma-applet-netspeed-widget
+git clone https://github.com/Scrumplex/plasma-applet-bandwidth-monitor.git
+cd plasma-applet-bandwidth-monitor
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+cmake ..
 make
 sudo make install
 ```
