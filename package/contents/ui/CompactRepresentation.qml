@@ -131,7 +131,7 @@ Item {
 
     TextMetrics {
         id: iconTextMetrics
-        text: '↓'
+        text: '▼'
         font.pixelSize: 64
     }
 
@@ -171,58 +171,6 @@ Item {
         y: 0
     }
 
-    Text {
-        id: downIcon
-        clip: true
-
-        height: singleLine ? parent.height : parent.height / 2
-        width: showSeparately ? iconTextMetrics.advanceWidth / iconTextMetrics.height * height * fontSizeScale : iconTextMetrics.advanceWidth / iconTextMetrics.height * height * fontSizeScale * 2
-
-        verticalAlignment: Text.AlignVCenter
-        anchors.left: offsetItem.right
-        y: 0
-        font.pixelSize: height * fontHeightRatio * fontSizeScale
-
-        text: showSeparately ? '↓' : '↓↑'
-        color: theme.textColor
-        visible: showIcons
-    }
-
-    Text {
-        id: downText
-        clip: true
-
-        height: singleLine ? parent.height : parent.height / 2
-        width: speedTextMetrics.advanceWidth / speedTextMetrics.height * height * fontSizeScale
-
-        horizontalAlignment: Text.AlignRight
-        verticalAlignment: Text.AlignVCenter
-        anchors.left: showIcons ? downIcon.right : offsetItem.right
-        anchors.leftMargin: showIcons ? font.pixelSize * marginFactor : 0
-        y: 0
-        font.pixelSize: height * fontHeightRatio * fontSizeScale
-
-        text: speedText(showSeparately ? downSpeed : downSpeed + upSpeed)
-        color: speedColor(showSeparately ? downSpeed : downSpeed + upSpeed)
-    }
-
-    Text {
-        id: downUnitText
-        clip: true
-
-        height: singleLine ? parent.height : parent.height / 2
-        width: unitTextMetrics.advanceWidth / unitTextMetrics.height * height * fontSizeScale
-
-        verticalAlignment: Text.AlignVCenter
-        anchors.left: downText.right
-        anchors.leftMargin: font.pixelSize * marginFactor
-        y: 0
-        font.pixelSize: height * fontHeightRatio * fontSizeScale
-
-        text: speedUnit(showSeparately ? downSpeed : downSpeed + upSpeed)
-        color: theme.textColor
-        visible: showUnits
-    }
 
     Text {
         id: upIcon
@@ -234,10 +182,10 @@ Item {
         verticalAlignment: Text.AlignVCenter
         anchors.left: (singleLine && showUnits) ? downUnitText.right : (singleLine ? downText.right : offsetItem.right)
         anchors.leftMargin: singleLine ? font.pixelSize * marginFactor : 0
-        y: singleLine ? 0 : parent.height / 2
+        y: 0
         font.pixelSize: height * fontHeightRatio * fontSizeScale
 
-        text: '↑'
+        text: '▲'
         color: theme.textColor
         visible: showSeparately && showIcons
     }
@@ -253,7 +201,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
         anchors.left: showIcons ? upIcon.right : ((singleLine && showUnits) ? downUnitText.right : (singleLine ? downText.right : offsetItem.right))
         anchors.leftMargin: (showIcons || singleLine) ? font.pixelSize * marginFactor : 0
-        y: singleLine ? 0 : parent.height / 2
+        y: 0
         font.pixelSize: height * fontHeightRatio * fontSizeScale
 
         text: speedText(upSpeed)
@@ -271,12 +219,65 @@ Item {
         verticalAlignment: Text.AlignVCenter
         anchors.left: upText.right
         anchors.leftMargin: font.pixelSize * marginFactor
-        y: singleLine ? 0 : parent.height / 2
+        y: 0
         font.pixelSize: height * fontHeightRatio * fontSizeScale
 
         text: speedUnit(upSpeed)
         color: theme.textColor
         visible: showSeparately && showUnits
+    }
+
+    Text {
+        id: downIcon
+        clip: true
+
+        height: singleLine ? parent.height : parent.height / 2
+        width: showSeparately ? iconTextMetrics.advanceWidth / iconTextMetrics.height * height * fontSizeScale : iconTextMetrics.advanceWidth / iconTextMetrics.height * height * fontSizeScale * 2
+
+        verticalAlignment: Text.AlignVCenter
+        anchors.left: offsetItem.right
+        y: singleLine ? 0 : parent.height / 2
+        font.pixelSize: height * fontHeightRatio * fontSizeScale
+
+        text: showSeparately ? '▼' : '▼▲'
+        color: theme.textColor
+        visible: showIcons
+    }
+
+    Text {
+        id: downText
+        clip: true
+
+        height: singleLine ? parent.height : parent.height / 2
+        width: speedTextMetrics.advanceWidth / speedTextMetrics.height * height * fontSizeScale
+
+        horizontalAlignment: Text.AlignRight
+        verticalAlignment: Text.AlignVCenter
+        anchors.left: showIcons ? downIcon.right : offsetItem.right
+        anchors.leftMargin: showIcons ? font.pixelSize * marginFactor : 0
+        y: singleLine ? 0 : parent.height / 2
+        font.pixelSize: height * fontHeightRatio * fontSizeScale
+
+        text: speedText(showSeparately ? downSpeed : downSpeed + upSpeed)
+        color: speedColor(showSeparately ? downSpeed : downSpeed + upSpeed)
+    }
+
+    Text {
+        id: downUnitText
+        clip: true
+
+        height: singleLine ? parent.height : parent.height / 2
+        width: unitTextMetrics.advanceWidth / unitTextMetrics.height * height * fontSizeScale
+
+        verticalAlignment: Text.AlignVCenter
+        anchors.left: downText.right
+        anchors.leftMargin: font.pixelSize * marginFactor
+        y: singleLine ? 0 : parent.height / 2
+        font.pixelSize: height * fontHeightRatio * fontSizeScale
+
+        text: speedUnit(showSeparately ? downSpeed : downSpeed + upSpeed)
+        color: theme.textColor
+        visible: showUnits
     }
 
     MouseArea {
